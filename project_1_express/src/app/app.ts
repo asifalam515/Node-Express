@@ -4,6 +4,22 @@ const app = express()
 app.use(express.json())
 app.use(express.text())
 
+// router
+const userRouter = express.Router()
+app.use("/",userRouter)
+
+userRouter.get('/api/v1/users/create-user',(req:Request,res:Response)=>{
+    const user = req.body
+    console.log(user)
+    res.json({
+        success:true,
+        message:"User is Created Successfully",
+        data:user
+    })
+})
+
+
+
 // create middleware
 const logger = (req:Request,res:Response,next:NextFunction)=>{
 console.log(req.url,req.method,req.hostname)
